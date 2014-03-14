@@ -23,7 +23,9 @@ package org.jboss.beach.priv.runner;
 
 import static org.junit.Assert.fail;
 
+import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,8 +35,18 @@ import org.junit.runner.RunWith;
  */
 @RunWith(PrivilegedSetupRunner.class)
 public class PrivilegedSetupRunnerTestCase {
+    @After
+    public void after() {
+        System.getProperties();
+    }
+
     @AfterClass
     public static void afterClass() {
+        System.getProperties();
+    }
+
+    @Before
+    public void before() {
         System.getProperties();
     }
 

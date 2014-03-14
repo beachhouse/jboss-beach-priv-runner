@@ -23,7 +23,9 @@ package org.jboss.beach.priv.runner;
 
 import java.util.List;
 
+import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.FrameworkMethod;
@@ -44,6 +46,22 @@ public class PrivilegedSetupRunner extends BlockJUnit4ClassRunner {
     }
 
     @Override
+    protected Statement withAfterClasses(Statement statement) {
+        List<FrameworkMethod> afters = getTestClass()
+                .getAnnotatedMethods(AfterClass.class);
+        return afters.isEmpty() ? statement :
+                new RunAfters(statement, afters, null);
+    }
+
+    @Override
+    protected Statement withAfters(final FrameworkMethod method, final Object target, final Statement statement) {
+        List<FrameworkMethod> afters = getTestClass().getAnnotatedMethods(
+                After.class);
+        return afters.isEmpty() ? statement : new RunAfters(statement, afters,
+                target);
+    }
+
+    @Override
     protected Statement withBeforeClasses(Statement statement) {
         List<FrameworkMethod> befores = getTestClass()
                 .getAnnotatedMethods(BeforeClass.class);
@@ -51,10 +69,11 @@ public class PrivilegedSetupRunner extends BlockJUnit4ClassRunner {
                 new RunBefores(statement, befores, null);
     }
 
-    protected Statement withAfterClasses(Statement statement) {
-        List<FrameworkMethod> afters = getTestClass()
-                .getAnnotatedMethods(AfterClass.class);
-        return afters.isEmpty() ? statement :
-                new RunAfters(statement, afters, null);
+    @Override
+    protected Statement withBefores(final FrameworkMethod method, final Object target, final Statement statement) {
+        List<FrameworkMethod> befores = getTestClass().getAnnotatedMethods(
+                Before.class);
+        return befores.isEmpty() ? statement : new RunBefores(statement,
+                befores, target);
     }
 }
