@@ -8,16 +8,16 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.jboss.beach.priv-runner</groupId>
-    <artifactId>jboss-beach-priv-runner</artifactId>
+    <groupId>org.jboss.beach.priv</groupId>
+    <artifactId>jboss-beach-priv</artifactId>
     <version>0.2.0-SNAPSHOT</version>
 
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
-    <name>JBoss Beach Priv Runner</name>
+    <name>JBoss Beach Privileged</name>
 
     <description>
-        Run JUnit4 test setup in a privileged block.
+        Do stuff in a privileged blocks.
     </description>
 
     <build>
@@ -38,6 +38,17 @@
         </plugins>
     </build>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.11</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <!--
         <dependency>
@@ -50,9 +61,12 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
         </dependency>
     </dependencies>
+
+    <modules>
+        <module>runner</module>
+    </modules>
 
     <scm>
         <connection>scm:git:https://github.com/beachhouse/jboss-beach-priv-runner.git</connection>

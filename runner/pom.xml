@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.jboss.beach.priv</groupId>
+        <artifactId>jboss-beach-priv</artifactId>
+        <version>0.2.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- TODO: do we want to keep this groupId? -->
+    <groupId>org.jboss.beach.priv-runner</groupId>
+    <artifactId>jboss-beach-priv-runner</artifactId>
+
+    <packaging>jar</packaging>
+
+    <name>JBoss Beach Priv Runner</name>
+
+    <description>
+        Run JUnit4 test setup in a privileged block.
+    </description>
+
+    <build>
+        <plugins>
+            <!--
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>-Dmaven.repo.local=${settings.localRepository} -Djava.security.manager -Djava.security.debug=access,failure -Djava.security.policy=${basedir}/src/test/resources/java.policy</argLine>
+                </configuration>
+            </plugin>
+            -->
+        </plugins>
+    </build>
+
+    <dependencies>
+        <!--
+        <dependency>
+           <groupId>org.mockito</groupId>
+           <artifactId>mockito-core</artifactId>
+           <version>1.8.4</version>
+           <scope>test</scope>
+        </dependency>
+        -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+</project>
