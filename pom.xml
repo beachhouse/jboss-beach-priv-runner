@@ -65,6 +65,7 @@
     </dependencies>
 
     <modules>
+        <module>interceptor</module>
         <module>runner</module>
     </modules>
 
